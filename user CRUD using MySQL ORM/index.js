@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./db');
-const userRoutes = require('./router');
+const userRoutes = require('./Routes/user');
+const busRoutes = require('./Routes/bus');
 
 app.use(express.json());
 
 app.use('/api', userRoutes);
+app.use('/api', busRoutes);
 
 sequelize.sync({ alter: true })
     .then(() => {
