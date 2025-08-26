@@ -48,4 +48,19 @@ exports.updateUser = async (req, res) => {
         console.log('Error updating user:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-}
+};
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.id);
+        if (!user) {
+            console.log('User not found with id:', req.params.id);
+            return res.status(404).json({ error: 'User not found' });
+        }
+        await user.destroy();
+        res.status(204).send();
+    } catch (error) {
+        console.log('Error deleting user:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
