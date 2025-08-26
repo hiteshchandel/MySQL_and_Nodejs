@@ -18,7 +18,7 @@ exports.getAllBusesForAvailableSeats = async (req, res) => {
         const buses = await Bus.findAll({
             where: {
                 availableSeats: {
-                    [Op.gte]: req.params.availableSeats
+                    [Op.gte]: req.params.seats
                 }
             }
         });
