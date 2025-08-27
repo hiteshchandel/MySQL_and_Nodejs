@@ -2,9 +2,10 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
 const Payment = sequelize.define('Payment', {
-    bookingId: {
+    id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        autoIncrement: true,
+        primaryKey: true
     },
     amount: {
         type: DataTypes.FLOAT,
