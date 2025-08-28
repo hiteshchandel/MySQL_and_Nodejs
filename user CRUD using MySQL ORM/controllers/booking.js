@@ -23,3 +23,30 @@ exports.createBooking = async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
+
+exports.getAllBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.findAll({
+      where: { userId: req.params.id },
+      include: [{ model: Bus, attributes: ["busNumber"] }]
+    })
+    res.status(200).json(bookings);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
+
+exports.getAllBookingBuses = async (req, res) => {
+    try {
+      const bookings = await Booking.findAll({
+        where: { busId: req.params.id },
+        include: [{ model: User, attributes: ["name", "email"] }]
+      });
+      res.status(200).json(bookings);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Something went wrong" });
+    }
+}

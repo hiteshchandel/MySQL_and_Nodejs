@@ -30,3 +30,4 @@ exports.getAllBusesForAvailableSeats = async (req, res) => {
         });
     }
 }
+
